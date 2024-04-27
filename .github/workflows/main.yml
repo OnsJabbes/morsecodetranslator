@@ -1,0 +1,26 @@
+name: CI/CD Morse Code
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8' # Modifier la version de Java selon vos besoins
+
+    - name: Compile Java code
+      run: javac Main.java
+
+    - name: Run tests
+      run: java Main
