@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module MorseCodeTranslator {
+	requires junit;
+}
