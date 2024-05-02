@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-import org.junit.Test;
-
 public class Main {
-	@Test
+	private static Scanner sc;
+
+	
 
     public static void main(String[] args) throws IOException {
         int option = 0;
 
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome to MorseCode Program :) ");
         System.out.println("");
