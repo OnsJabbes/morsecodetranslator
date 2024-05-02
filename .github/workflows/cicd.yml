@@ -22,7 +22,7 @@ jobs:
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
 
       - name: Compile Java code
-        run: java MorseCodeTranslator/src/MorseDecoder/Main
+        run: javac MorseCodeTranslator/src/MorseDecoder/Main.java
 
 
       - name: Install JUnit
