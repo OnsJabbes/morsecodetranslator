@@ -1,0 +1,47 @@
+name: CI/CD Morse Code
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
+
+      - name: Compile Java code
+        run: javac MorseDecoder/Main.java
+
+      - name: Install JUnit
+        run: |
+          mkdir lib
+          Invoke-WebRequest -Uri 'https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar' -OutFile 'lib/junit-4.13.2.jar'
+
+  test:
+    name: Test
+    runs-on: windows-latest
+    needs: [build]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
+      - name: Run JUnit 4 tests
+        run: |
+          java -cp .;lib/junit-4.13.2.jar org.junit.runner.JUnitCore MorseCodeDecoderTest
