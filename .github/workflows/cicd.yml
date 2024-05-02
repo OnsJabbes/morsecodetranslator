@@ -14,10 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: '17'
           distribution: 'adopt'
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
 
@@ -37,10 +37,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: '17'
           distribution: 'adopt'
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
       - name: Run JUnit 4 tests
