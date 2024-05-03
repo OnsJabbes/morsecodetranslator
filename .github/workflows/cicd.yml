@@ -45,5 +45,8 @@ jobs:
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
       - name: Run JUnit 4 tests
         run: |
-                    java -cp .;lib/junit-4.13.2.jar org.junit.Test src/MorseDecoder/MorseCodeDecoderTest
+          ls build
+      - name: Run JUnit 4 tests
+        run: |
+          java -cp .;lib/junit-4.13.2.jar org.junit.runner.JUnitCore src/MorseDecoder/MorseCodeDecoderTest
 
