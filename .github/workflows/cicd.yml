@@ -19,16 +19,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
+          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 17 installation path
 
-      - name: Compile Java cod
-        run: javac src/MorseDecoder/Main.java
-
-
-      - name: Install JUnit
+      - name: Create lib directory and download JUnit JAR file
         run: |
           mkdir lib
           Invoke-WebRequest -Uri 'https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar' -OutFile 'lib/junit-4.13.2.jar'
+
+      - name: Check if junit-4.13.2.jar exists in lib directory
+        run: |
+          if not exist lib\junit-4.13.2.jar (
+            echo "JUnit 4 JAR file not found in lib directory"
+            exit 1
+          ) else (
+            echo "JUnit 4 JAR file found in lib directory"
+          )
 
   test:
     name: Test
@@ -42,11 +47,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 8 installation path
-      - name: Run JUnit 4 tests
-        run: |
-          ls build
+          javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 17 installation path
+     
       - name: Run JUnit 4 tests
         run: |
           java -cp .;lib/junit-4.13.2.jar org.junit.runner.JUnitCore src/MorseDecoder/MorseCodeDecoderTest
-
