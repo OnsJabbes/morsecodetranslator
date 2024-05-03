@@ -26,14 +26,7 @@ jobs:
           mkdir lib
           Invoke-WebRequest -Uri 'https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar' -OutFile 'lib/junit-4.13.2.jar'
 
-      - name: Check if junit-4.13.2.jar exists in lib directory
-        run: |
-          if (-not (Test-Path lib\junit-4.13.2.jar)) {
-            Write-Output "JUnit 4 JAR file not found in lib directory"
-            exit 1
-          } else {
-            Write-Output "JUnit 4 JAR file found in lib directory"
-          }
+    
 
   test:
     name: Test
