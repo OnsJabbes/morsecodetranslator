@@ -22,10 +22,10 @@ jobs:
       - name: Set up Maven
         uses: actions/setup-java@v2
         with:
-        java-version: '17'  # adjust this to your Java version
-        distribution: 'adopt'
-        server-id: repo
-        settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
+            java-version: '17'  # adjust this to your Java version
+            distribution: 'adopt'
+            server-id: repo
+            settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml  # adjust the Maven command as per your project setup
