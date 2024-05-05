@@ -19,19 +19,40 @@ jobs:
           distribution: 'adopt'
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 17 installation path
 
-      - name: Create lib directory and download JUnit JAR file
-        run: |
-          mkdir lib
-          Invoke-WebRequest -Uri 'https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar' -OutFile 'lib/junit-4.13.2.jar'
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
+        java-version: '17'  # adjust this to your Java version
+        distribution: 'adopt'
+        server-id: repo
+        settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml  # adjust the Maven command as per your project setup
+
   test:
-      name: Test
-      runs-on: ubuntu-latest
-      needs: [build] # Ce job dépend du job 'build'
-      steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'  # adjust this to your Java version
+        distribution: 'adopt'
+        javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # path to your JDK installation
+
+    - name: Set up Maven
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'  # adjust this to your Java version
+        distribution: 'adopt'
+        server-id: repo
+        settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
+
+    - name: Run tests with Maven
+      run: mvn test  # adjust the Maven command as per your project setup   
       
-      - name: Run automated tests
-        run: |
-          # Commandes pour exécuter des tests automatisés
-          mvn test
+      
