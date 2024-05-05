@@ -27,8 +27,7 @@ jobs:
             server-id: repo
             settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
 
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml  # adjust the Maven command as per your project setup
+     
 
   test:
     runs-on: windows-latest
