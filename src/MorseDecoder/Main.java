@@ -4,12 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import org.junit.Test;
 
 public class Main {
 	private static Scanner sc;
-
-	
-
+	@Test
     public static void main(String[] args) throws IOException {
         int option = 0;
 
