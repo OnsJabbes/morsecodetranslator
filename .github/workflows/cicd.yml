@@ -19,14 +19,7 @@ jobs:
           distribution: 'adopt'
           javaHome: 'C:\Program Files\Eclipse Adoptium\jdk-17.0.8.101-hotspot\bin'  # Update with your JDK 17 installation path
 
-      - name: Set up Maven
-        uses: actions/setup-java@v2
-        with:
-            java-version: '17'  # adjust this to your Java version
-            distribution: 'adopt'
-            server-id: repo
-            settings-path: ${{ github.workspace }}  # assuming Maven settings.xml is in the project root
-
+     
      
 
   test:
